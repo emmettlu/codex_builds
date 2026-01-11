@@ -54,14 +54,14 @@ jobs:
 
       - name: Copy config file
         shell: bash
-        working-directory: ${{ env.PROJECT_PATH }}
+        working-directory: ${{ env.PROJECT_PATH }}/codex-rs
         run: |
           mkdir -p .cargo
-          cp -f ../.cargo/config.toml .cargo
+          cp -f ../${{ env.PROJECT_PATH }}/.cargo/config.toml .cargo
 
       - name: Build
         shell: bash
-        working-directory: ${{ env.PROJECT_PATH }}
+        working-directory: ${{ env.PROJECT_PATH }}/codex-rs
         run: |
           rm -f Cargo.lock
           cargo update
