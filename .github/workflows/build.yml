@@ -9,7 +9,7 @@ jobs:
     env:
       PROJECT_REPOSITORY: openai/codex
       PROJECT_VERSION: rust-v0.80.0
-      PROJECT_PATH: codex/codex-rs
+      PROJECT_PATH: codex
       PROJECT_BIN: codex
     strategy:
       matrix:
@@ -54,14 +54,14 @@ jobs:
 
       - name: Copy config file
         shell: bash
-        working-directory: ${{ env.PROJECT_PATH }}
+        working-directory: ${{ env.PROJECT_PATH }}/codex-rs
         run: |
           mkdir -p .cargo
           cp -f ../../.cargo/config.toml .cargo
 
       - name: Build
         shell: bash
-        working-directory: ${{ env.PROJECT_PATH }}
+        working-directory: ${{ env.PROJECT_PATH }}/codex-rs
         run: |
           rm -f Cargo.lock
           cargo update
@@ -72,8 +72,8 @@ jobs:
         with:
           name: ${{ env.PROJECT_BIN }}_${{ runner.os }}
           path: |
-            ${{ env.PROJECT_PATH }}/target/release/*.so
-            ${{ env.PROJECT_PATH }}/target/release/*.dll
+            ${{ env.PROJECT_PATH }}/codex-rs/target/release/*.so
+            ${{ env.PROJECT_PATH }}/codex-rs/target/release/*.dll
 
-            ${{ env.PROJECT_PATH }}/target/release/${{ env.PROJECT_BIN }}
-            ${{ env.PROJECT_PATH }}/target/release/${{ env.PROJECT_BIN }}.exe
+            ${{ env.PROJECT_PATH }}/codex-rs/target/release/${{ env.PROJECT_BIN }}
+            ${{ env.PROJECT_PATH }}/codex-rs/target/release/${{ env.PROJECT_BIN }}.exe
