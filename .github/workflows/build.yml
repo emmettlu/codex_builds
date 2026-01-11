@@ -9,7 +9,7 @@ jobs:
     env:
       PROJECT_REPOSITORY: openai/codex
       PROJECT_VERSION: rust-v0.80.0
-      PROJECT_PATH: codex
+      PROJECT_PATH: codex/codex-rs
       PROJECT_BIN: codex
     strategy:
       matrix:
@@ -54,14 +54,14 @@ jobs:
 
       - name: Copy config file
         shell: bash
-        working-directory: ${{ env.PROJECT_PATH }}/codex-rs
+        working-directory: ${{ env.PROJECT_PATH }}
         run: |
           mkdir -p .cargo
-          cp -f ../${{ env.PROJECT_PATH }}/.cargo/config.toml .cargo
+          cp -f ../../.cargo/config.toml .cargo
 
       - name: Build
         shell: bash
-        working-directory: ${{ env.PROJECT_PATH }}/codex-rs
+        working-directory: ${{ env.PROJECT_PATH }}
         run: |
           rm -f Cargo.lock
           cargo update
