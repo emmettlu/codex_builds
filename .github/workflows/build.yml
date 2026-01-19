@@ -8,7 +8,7 @@ jobs:
   build:
     env:
       PROJECT_REPOSITORY: openai/codex
-      PROJECT_VERSION: rust-v0.80.0
+      PROJECT_VERSION: rust-v0.87.0
       PROJECT_PATH: codex
       PROJECT_BIN: codex
     strategy:
