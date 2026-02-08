@@ -59,6 +59,12 @@ jobs:
           mkdir -p .cargo
           cp -f ../../.cargo/config.toml .cargo
 
+
+      - name: Install ssh-agent & add private key (if needed)
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    
       - name: Build
         shell: bash
         working-directory: ${{ env.PROJECT_PATH }}/codex-rs
