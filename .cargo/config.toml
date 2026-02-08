@@ -16,3 +16,6 @@ lto = true
 opt-level = 's'
 panic = "abort"
 strip = true
+
+[net]
+git-fetch-with-cli = true
