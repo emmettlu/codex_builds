@@ -1,6 +1,4 @@
 name: Build
-  env:
-    CARGO_NET_GIT_FETCH_WITH_CLI: true
 on:
   push:
   workflow_dispatch:
