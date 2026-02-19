@@ -71,7 +71,7 @@ jobs:
         run: |
           rm -f Cargo.lock
           cargo update
-          cargo b -r
+          cargo b -r -p cli
 
       - name: Archive
         uses: actions/upload-artifact@v5
