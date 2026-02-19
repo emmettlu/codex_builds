@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Windows Config
-        if: matrix.os == 'windows-2022'
+        if: runner.os == 'Windows'
         shell: pwsh
         run: |
           git config --system core.longpaths true
@@ -34,7 +34,7 @@ jobs:
           echo "Removed link.exe in git"
 
       - name: Setup MSVC
-        if: matrix.os == 'windows-2022'
+        if: runner.os == 'Windows'
         uses: ilammy/msvc-dev-cmd@v1
         with:
           toolset: 14.29
@@ -50,6 +50,13 @@ jobs:
           repository: ${{ env.PROJECT_REPOSITORY }}
           ref: refs/tags/${{ env.PROJECT_VERSION }}
           path: ${{ env.PROJECT_PATH }}
+
+      - name: Install Linux deps
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          sudo apt update
+          sudo apt install libcap-dev pkg-config
 
       - name: Copy config file
         shell: bash
