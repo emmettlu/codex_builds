@@ -71,6 +71,7 @@ jobs:
         run: |
           rm -f Cargo.lock
           cargo update
+          cd cli
           cargo b -r -p cli
 
       - name: Archive
